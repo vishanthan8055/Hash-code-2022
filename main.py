@@ -1,4 +1,4 @@
-
+out = []
 like_lst =[]
 dislike_lst =[]
 items = []
@@ -6,7 +6,6 @@ lc = {}
 dc = {}
 with open('input.txt') as f:
     lines = f.readlines()
-out = []
 for i in range(len(lines)):
     out.append(lines[i].rstrip('\n').split(' '))
 n = out.pop(0)
@@ -29,23 +28,22 @@ def get_items(like_lst,dislike_lst):
     items = list(set(items))
     return list(set(items))
 items = get_items(like_lst,dislike_lst)
-# print(like_lst)
-# print(dislike_lst)
-def majority(like_lst,items,lc):
+
+def remove_nested(lst):
+    return [val for sublist in lst for val in sublist]
+like_lst = remove_nested(like_lst)
+dislike_lst = remove_nested(dislike_lst)
+def remove_int(lst):
+    no_int = [y for y in lst if not (y.isdigit() or y[0] == '-' and y[1:].isdigit())]
+    return no_int
+like_lst = remove_int(like_lst)
+dislike_lst = remove_int(dislike_lst)
+def count_items(lst,d):
     for i in items:
-        sum = 0
-        for j in like_lst:
-            if j.count(i) > 0:
-                sum = j.count(i)
-        lc[i] = sum
-    return lc
-lc = majority(like_lst,items,lc)
-dc = majority(dislike_lst,items,dc)
+        count = lst.count(i)
+        d[i] = count
+    return d
+lc = count_items(like_lst,lc)
+dc = count_items(dislike_lst,dc)
 print(lc)
 print(dc)
-'''
-for i in items:
-    for j in  like_lst:
-        for k in j:
-            if k == i:
-'''
