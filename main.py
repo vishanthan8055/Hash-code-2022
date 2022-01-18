@@ -50,3 +50,7 @@ for i in items:
     if lc[i] > dc[i]:
         result.append(i)
 print(result)
+with open('output.txt','w') as f:
+    for i in result:
+        f.write(i + " ")
+print(len(result))
