@@ -4,6 +4,7 @@ dislike_lst =[]
 items = []
 lc = {}
 dc = {}
+result = []
 with open('input.txt') as f:
     lines = f.readlines()
 for i in range(len(lines)):
@@ -45,5 +46,7 @@ def count_items(lst,d):
     return d
 lc = count_items(like_lst,lc)
 dc = count_items(dislike_lst,dc)
-print(lc)
-print(dc)
+for i in items:
+    if lc[i] > dc[i]:
+        result.append(i)
+print(result)
