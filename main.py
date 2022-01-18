@@ -1,12 +1,20 @@
-n = int(input())
+
 like_lst =[]
 dislike_lst =[]
 items = []
 lc = {}
 dc = {}
-for i in range(n):
-    like_lst.append(input().split())
-    dislike_lst.append(input().split())
+with open('input.txt') as f:
+    lines = f.readlines()
+out = []
+for i in range(len(lines)):
+    out.append(lines[i].rstrip('\n').split(' '))
+n = out.pop(0)
+for i in range(len(out)):
+    if i%2 == 0:
+        like_lst.append(out[i])
+    else:
+        dislike_lst.append(out[i])
 def get_items(like_lst,dislike_lst):
     items = []
     for i in like_lst:
