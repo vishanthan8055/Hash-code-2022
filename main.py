@@ -48,7 +48,7 @@ lc = count_items(like_lst,lc)
 dc = count_items(dislike_lst,dc)
 
 for i in items:
-    if lc[i] >= dc[i]:
+    if lc[i] > dc[i]:
         result.append(i)
 print(result)
 with open('output.txt','w') as f:
